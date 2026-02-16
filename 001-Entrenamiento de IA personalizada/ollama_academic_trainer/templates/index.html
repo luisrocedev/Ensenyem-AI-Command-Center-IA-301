@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ollama Academic Trainer · Actividad 001</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hero">
+        <h1>Ensenyem AI Training Hub</h1>
+        <p>Entrena el bot corporativo (WhatsApp) con PDF, documentos internos y vídeos de YouTube</p>
+      </header>
+
+      <section class="panel">
+        <h2>Paso 1 · Cargar conocimiento de empresa</h2>
+        <div class="three-col">
+          <article class="subpanel">
+            <h3>Documento manual</h3>
+            <input id="docTitle" type="text" placeholder="Título (ej: Política de matrículas)" />
+            <textarea id="docContent" rows="5" placeholder="Pega aquí el contenido interno de Ensenyem..."></textarea>
+            <button id="btnAddDoc">Guardar documento</button>
+          </article>
+
+          <article class="subpanel">
+            <h3>PDF corporativo</h3>
+            <input id="pdfTitle" type="text" placeholder="Título opcional" />
+            <input id="pdfFile" type="file" accept="application/pdf" />
+            <button id="btnAddPdf">Subir PDF</button>
+          </article>
+
+          <article class="subpanel">
+            <h3>Vídeo YouTube</h3>
+            <input id="ytTitle" type="text" placeholder="Título opcional" />
+            <input id="ytUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." />
+            <button id="btnAddYoutube">Importar transcripción</button>
+          </article>
+
+          <article class="subpanel">
+            <h3>Sitio web completo</h3>
+            <input id="webTitle" type="text" placeholder="Título (ej: Web Ensenyem)" />
+            <input id="webUrl" type="url" placeholder="https://ensenyem.es" />
+            <p class="help">
+              Se rastrea automáticamente la web corporativa para extraer cursos, servicios y contenido institucional.
+            </p>
+            <button id="btnAddWebsite">Rastrear web e importar</button>
+            <div id="webProgressWrap" class="progress-wrap hidden">
+              <div class="progress-head">
+                <strong id="webProgressStatus">En cola</strong>
+                <span id="webProgressPercent">0%</span>
+              </div>
+              <div class="progress-bar"><div id="webProgressBar" class="progress-fill"></div></div>
+              <p id="webProgressMeta" class="help">Esperando inicio...</p>
+            </div>
+          </article>
+        </div>
+        <h3>Fuentes actuales</h3>
+        <div id="sourcesList" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Paso 2 · Entrenar y evaluar</h2>
+        <div class="row">
+          <button id="btnHealth">Comprobar Ollama</button>
+          <button id="btnTrain">Entrenar bot Ensenyem</button>
+          <button id="btnEval">Comparar antes/después</button>
+          <button id="btnStats">Refrescar métricas</button>
+        </div>
+        <pre id="status"></pre>
+      </section>
+
+      <section class="panel two-col">
+        <div>
+          <h2>Paso 3 · Simular WhatsApp</h2>
+          <textarea id="question" rows="5" placeholder="Ejemplo: ¿Cómo funciona la matrícula en Ensenyem?"></textarea>
+          <div class="row">
+            <button data-mode="baseline" class="btnAsk">Bot sin entrenar</button>
+            <button data-mode="trained" class="btnAsk">Bot Ensenyem entrenado</button>
+          </div>
+        </div>
+        <div>
+          <h2>Respuesta del bot</h2>
+          <pre id="answer"></pre>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Métricas</h2>
+        <div id="kpis" class="kpis"></div>
+      </section>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

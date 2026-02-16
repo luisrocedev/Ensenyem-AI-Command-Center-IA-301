@@ -1,0 +1,18 @@
+[
+  {
+    "question": "¿Qué patrón evita cascadas de errores en microservicios?",
+    "expected_keywords": ["circuit breaker", "reintentos", "timeouts"]
+  },
+  {
+    "question": "Dime dos ventajas de usar un ORM en DAM",
+    "expected_keywords": ["sql", "mantenibilidad", "entidad"]
+  },
+  {
+    "question": "¿Qué medidas básicas de seguridad deben aplicarse en microservicios?",
+    "expected_keywords": ["tokens", "tls", "validación"]
+  },
+  {
+    "question": "¿Qué problema típico aparece con ORM y cómo mitigarlo?",
+    "expected_keywords": ["n+1", "consultas", "índices"]
+  }
+]

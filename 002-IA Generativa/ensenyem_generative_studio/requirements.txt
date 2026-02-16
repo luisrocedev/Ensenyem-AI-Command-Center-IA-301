@@ -1,0 +1,5 @@
+flask==3.0.3
+requests==2.32.3
+pypdf==4.3.1
+youtube-transcript-api==0.6.2
+beautifulsoup4==4.12.3

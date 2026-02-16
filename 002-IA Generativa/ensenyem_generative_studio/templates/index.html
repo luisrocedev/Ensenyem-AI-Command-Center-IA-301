@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ensenyem • Centro de Mando IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <p class="brand-kicker">Proyecto Intermodular II</p>
+          <h1>Ensenyem AI Command Center</h1>
+          <p class="brand-subtitle">Centro de mando unificado para Entrenamiento IA, IA Generativa y evolución de Agente IA.</p>
+        </div>
+      </header>
+
+      <nav class="module-nav" role="tablist" aria-label="Módulos IA">
+        <button class="tab-btn active" data-tab="training">Entrenamiento IA</button>
+        <button class="tab-btn" data-tab="generative">IA Generativa</button>
+        <button class="tab-btn" data-tab="agent">Agente IA</button>
+      </nav>
+
+      <section id="tab-training" class="tab-panel active">
+        <section class="panel panel-header">
+          <div class="panel-heading">
+            <h2>Entrenamiento IA</h2>
+            <p>Importa conocimiento, revisa estado y entrena el índice semántico.</p>
+          </div>
+          <button id="btn-health" class="ghost-btn">Actualizar estado del sistema</button>
+          <pre id="health-output" class="output compact-output"></pre>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h3>Fuentes de conocimiento</h3>
+            <p>Añade contenido de forma guiada para alimentar el entrenamiento.</p>
+          </div>
+
+          <div id="pipeline-status" class="status-banner">Estado de pipeline: comprobando...</div>
+
+          <div class="cards-grid">
+            <form id="form-document" class="card-form">
+              <h4>Documento manual</h4>
+              <label for="doc-title">Título</label>
+              <input id="doc-title" type="text" placeholder="Ej: Catálogo formativo empresa" required />
+              <label for="doc-content">Contenido</label>
+              <textarea id="doc-content" placeholder="Pega el contenido del documento" required></textarea>
+              <button type="submit">Guardar documento</button>
+            </form>
+
+            <form id="form-pdf" class="card-form" enctype="multipart/form-data">
+              <h4>Importar PDF</h4>
+              <label for="pdf-title">Título (opcional)</label>
+              <input id="pdf-title" type="text" placeholder="Ej: Dossier corporativo" />
+              <label for="pdf-file">Archivo PDF</label>
+              <input id="pdf-file" type="file" accept="application/pdf" required />
+              <button type="submit">Subir PDF</button>
+            </form>
+
+            <form id="form-youtube" class="card-form">
+              <h4>Importar YouTube</h4>
+              <label for="yt-title">Título (opcional)</label>
+              <input id="yt-title" type="text" placeholder="Ej: Presentación de servicios" />
+              <label for="yt-url">URL de YouTube</label>
+              <input id="yt-url" type="url" placeholder="https://www.youtube.com/watch?v=..." required />
+              <button type="submit">Importar transcripción</button>
+              <small>Se recomienda URL de vídeo individual para máxima compatibilidad.</small>
+            </form>
+
+            <form id="form-website" class="card-form">
+              <h4>Rastrear web corporativa</h4>
+              <label for="web-title">Título de la fuente</label>
+              <input id="web-title" type="text" placeholder="Ej: Web Ensenyem" />
+              <label for="web-url">URL de la web</label>
+              <input id="web-url" type="url" placeholder="https://ensenyem.es" required />
+              <button type="submit" class="primary">Iniciar rastreo</button>
+              <small>Rastreo automático enterprise (sin configuración manual).</small>
+            </form>
+          </div>
+
+          <div id="crawl-progress" class="progress-card hidden" aria-live="polite">
+            <div class="progress-head">
+              <strong id="crawl-status">En cola...</strong>
+              <span id="crawl-meta"></span>
+            </div>
+            <div class="progress-track"><div id="crawl-bar" class="progress-bar"></div></div>
+            <p id="crawl-message" class="hint"></p>
+            <div class="actions">
+              <button id="btn-cancel-crawl" type="button" class="ghost-btn hidden">Cancelar rastreo</button>
+            </div>
+          </div>
+
+          <div class="section-header-inline">
+            <h4>Listado de fuentes</h4>
+            <button id="btn-refresh-sources" class="ghost-btn">Actualizar</button>
+          </div>
+          <div id="sources-output" class="sources-list" aria-live="polite"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h3>Entrenamiento y validación</h3>
+            <p>Cuando termines de importar, entrena para que el conocimiento se use en respuestas.</p>
+          </div>
+          <div class="actions">
+            <button id="btn-train" class="primary">Entrenar índice semántico</button>
+          </div>
+          <pre id="train-output" class="output"></pre>
+
+          <h4>Pregunta de validación</h4>
+          <div class="inline-form">
+            <label class="sr-only" for="question">Pregunta</label>
+            <input id="question" type="text" placeholder="Ej: ¿Qué servicios ofrece Ensenyem para empresas?" />
+            <button id="btn-ask">Preguntar</button>
+          </div>
+          <pre id="ask-output" class="output"></pre>
+        </section>
+      </section>
+
+      <section id="tab-generative" class="tab-panel">
+        <section class="panel panel-header">
+          <div class="panel-heading">
+            <h2>IA Generativa</h2>
+            <p>Crea piezas listas para negocio utilizando el contexto entrenado.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h3>¿Qué significa IA Generativa aquí?</h3>
+            <p>Este módulo no “adivina” contenido: genera textos nuevos (emails, WhatsApp, posts, fichas) usando como base lo que entrenaste en el módulo anterior.</p>
+          </div>
+          <ol class="guide-list">
+            <li><strong>Elige objetivo</strong>: tipo de pieza que quieres crear.</li>
+            <li><strong>Define el contexto</strong>: tema, tono y audiencia.</li>
+            <li><strong>Genera</strong>: el sistema usa el corpus entrenado y devuelve un borrador utilizable.</li>
+            <li><strong>Revisa referencias</strong>: valida que el contenido esté alineado con Ensenyem.</li>
+          </ol>
+
+          <div class="quick-templates" role="group" aria-label="Plantillas rápidas de generación">
+            <button type="button" class="ghost-btn quick-template" data-task="whatsapp_reply" data-topic="Consulta sobre cursos para empresas" data-tone="Cercano y resolutivo" data-audience="Responsable de RRHH" data-length="corta">Plantilla WhatsApp</button>
+            <button type="button" class="ghost-btn quick-template" data-task="social_post" data-topic="Lanzamiento de formación en IA aplicada" data-tone="Inspirador y profesional" data-audience="Comunidad profesional" data-length="media">Plantilla Post Social</button>
+            <button type="button" class="ghost-btn quick-template" data-task="email_campaign" data-topic="Propuesta formativa para equipos" data-tone="Profesional y persuasivo" data-audience="Dirección y RRHH" data-length="media">Plantilla Email</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="form-grid">
+            <label>
+              Tipo de tarea
+              <select id="task-type">
+                <option value="course_summary">Ficha comercial de curso</option>
+                <option value="whatsapp_reply">Respuesta corta de WhatsApp</option>
+                <option value="social_post">Post para redes</option>
+                <option value="email_campaign">Email de campaña</option>
+              </select>
+            </label>
+
+            <label>
+              Tema
+              <input id="topic" type="text" placeholder="Ej: Bootcamp Java + IA para empresas" />
+            </label>
+
+            <label>
+              Tono
+              <input id="tone" type="text" placeholder="Ej: Cercano y profesional" />
+            </label>
+
+            <label>
+              Audiencia
+              <input id="audience" type="text" placeholder="Ej: Responsables de RRHH" />
+            </label>
+
+            <label>
+              Longitud
+              <select id="length">
+                <option value="corta">Corta</option>
+                <option value="media" selected>Media</option>
+                <option value="larga">Larga</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="btn-preview" class="ghost-btn">Previsualizar contexto</button>
+            <button id="btn-generate" class="primary">Generar contenido</button>
+          </div>
+
+          <div class="result-grid">
+            <div>
+              <h4>Contexto usado</h4>
+              <pre id="context-output" class="output"></pre>
+            </div>
+            <div>
+              <h4>Resultado generado</h4>
+              <pre id="generation-output" class="output"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header-inline">
+            <h4>Historial de generaciones</h4>
+            <button id="btn-history" class="ghost-btn">Actualizar</button>
+          </div>
+          <pre id="history-output" class="output"></pre>
+        </section>
+      </section>
+
+      <section id="tab-agent" class="tab-panel">
+        <section class="panel panel-header">
+          <div class="panel-heading">
+            <h2>Agente IA</h2>
+            <p>Actividad 003: simulación de agente operativo con contexto entrenado de Ensenyem.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header-inline">
+            <h4>Estado del agente</h4>
+            <button id="btn-agent-overview" class="ghost-btn">Actualizar estado</button>
+          </div>
+          <pre id="agent-overview-output" class="output compact-output"></pre>
+
+          <div class="actions">
+            <button id="btn-workflow-auto" class="primary">Workflow automático (Web → Entrenar → Agente)</button>
+          </div>
+          <p class="hint">Úsalo cuando quieras refrescar conocimiento de la web, reentrenar y comprobar la respuesta del agente en un único flujo.</p>
+          <div id="workflow-output" class="output compact-output workflow-output"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h3>Simulación de flujo de atención</h3>
+            <p>Define canal, política y objetivo para probar cómo respondería el agente con información real del corpus.</p>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Canal
+              <select id="agent-channel">
+                <option value="webchat">Web Chat</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">Email</option>
+                <option value="crm">CRM</option>
+              </select>
+            </label>
+
+            <label>
+              Política de actuación
+              <select id="agent-policy">
+                <option value="informativo">Informativo</option>
+                <option value="comercial">Comercial</option>
+                <option value="soporte">Soporte</option>
+              </select>
+            </label>
+
+            <label>
+              Objetivo del agente
+              <input id="agent-objective" type="text" placeholder="Ej: Resolver duda y proponer siguiente paso comercial" />
+            </label>
+
+            <label>
+              Mensaje del cliente
+              <textarea id="agent-customer-message" placeholder="Ej: Hola, somos una empresa y queremos saber qué formación BIM ofrecéis y cómo empezar."></textarea>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="btn-agent-run" class="primary">Ejecutar agente</button>
+            <button id="btn-agent-runs" class="ghost-btn">Ver últimas ejecuciones</button>
+          </div>
+
+          <div class="result-grid">
+            <div>
+              <h4>Respuesta del agente</h4>
+              <div id="agent-response-output" class="output agent-response-output"></div>
+            </div>
+            <div>
+              <h4>Contexto usado</h4>
+              <pre id="agent-context-output" class="output"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header-inline">
+            <h4>Trazas del agente</h4>
+            <button id="btn-agent-runs-refresh" class="ghost-btn">Actualizar trazas</button>
+          </div>
+          <div id="agent-runs-output" class="agent-runs-list" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

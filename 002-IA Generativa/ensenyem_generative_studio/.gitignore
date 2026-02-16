@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+generative.sqlite3
+.DS_Store

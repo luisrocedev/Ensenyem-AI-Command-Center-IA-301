@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+trainer.sqlite3
+models/
+.DS_Store
