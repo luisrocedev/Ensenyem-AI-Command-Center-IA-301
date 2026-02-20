@@ -126,13 +126,3 @@ El código de 003 **sí existe**, pero está integrado en el proyecto unificado:
 ## 4.- Conclusión breve (25%)
 
 La Actividad 003 completa el ciclo 001→002→003: primero entreno conocimiento, luego genero contenido y finalmente ejecuto un agente con políticas y trazabilidad. Este diseño permite escalar a canales reales sin perder control técnico.
-
-## Ejecución
-
-```bash
-cd "301-Actividades final de unidad - Segundo trimestre/002-IA Generativa/ensenyem_generative_studio"
-pip install -r requirements.txt
-python app.py
-```
-
-URL local: `http://127.0.0.1:5102`

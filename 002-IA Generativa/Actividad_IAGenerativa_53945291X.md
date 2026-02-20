@@ -3,8 +3,7 @@
 **Alumno:** Luis Jahir Rodriguez Cedeño  
 **DNI:** 53945291X  
 **Curso:** DAM2 - Proyecto Intermodular II  
-**Unidad:** 301-Actividades final de unidad - Segundo trimestre  
-**Ruta:** `002-IA Generativa/ensenyem_generative_studio`
+**Unidad:** 301-Actividades final de unidad - Segundo trimestre
 
 ## 1.- Introducción breve y contextualización (25%)
 
@@ -106,10 +105,3 @@ La actividad demuestra que la IA Generativa aporta valor cuando está anclada al
 - `001-Entrenamiento de IA personalizada` → memoria propia.
 - `002-IA Generativa` → esta memoria.
 - `003-AgenteIA` → `003-AgenteIA/Actividad_AgenteIA_53945291X.md`.
-
-## Evidencias de implementación (código real)
-
-- `ensenyem_generative_studio/app.py` (`retrieve_context`, `build_generation_prompt`, `api_generate`, `api_generations`)
-- `ensenyem_generative_studio/templates/index.html`
-- `ensenyem_generative_studio/static/app.js`
-- `ensenyem_generative_studio/static/styles.css`

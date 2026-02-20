@@ -10,7 +10,7 @@
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
-*Tres actividades conectadas en un ciclo completo: ingesta → entrenamiento → generación → agente autónomo.*
+_Tres actividades conectadas en un ciclo completo: ingesta → entrenamiento → generación → agente autónomo._
 
 [Arquitectura](#arquitectura) · [Módulos](#módulos) · [Instalación](#instalación) · [API](#api-rest) · [Evaluación](#evaluación)
 
@@ -24,11 +24,11 @@
 
 El sistema se compone de **tres módulos encadenados** que representan las tres fases de un pipeline de IA corporativo:
 
-| Fase | Módulo | Puerto | Función |
-|------|--------|--------|---------|
-| 1️⃣ | **Entrenamiento IA** | `5101` | Ingesta de corpus, chunking, embeddings vectoriales, benchmark |
-| 2️⃣ | **IA Generativa** | `5102` | Generación de contenido condicionado por RAG |
-| 3️⃣ | **Agente IA** | `5102` | Agente autónomo multicanal con políticas configurables |
+| Fase | Módulo               | Puerto | Función                                                        |
+| ---- | -------------------- | ------ | -------------------------------------------------------------- |
+| 1️⃣   | **Entrenamiento IA** | `5101` | Ingesta de corpus, chunking, embeddings vectoriales, benchmark |
+| 2️⃣   | **IA Generativa**    | `5102` | Generación de contenido condicionado por RAG                   |
+| 3️⃣   | **Agente IA**        | `5102` | Agente autónomo multicanal con políticas configurables         |
 
 > Las fases 2 y 3 comparten backend en un **Command Center unificado** que integra entrenamiento, generación y agente en una sola interfaz.
 
@@ -76,15 +76,15 @@ El sistema se compone de **tres módulos encadenados** que representan las tres 
 
 Sistema completo de RAG (Retrieval-Augmented Generation) que transforma documentos corporativos en conocimiento consultable:
 
-| Característica | Detalle |
-|----------------|---------|
-| **Ingesta multi-fuente** | Documentos manuales, PDF, YouTube transcripts, web crawling |
-| **Chunking inteligente** | Fragmentos de 700 chars con overlap y separación por frases |
-| **Embeddings vectoriales** | `nomic-embed-text` vía Ollama para representación semántica |
-| **Recuperación híbrida** | Cosine similarity (80 %) + keyword overlap (20 %) |
-| **Grounding** | Umbrales mínimos (`bestScore ≥ 0.33`, `overlap ≥ 0.12`) para evitar alucinaciones |
-| **Benchmark** | Comparación objetiva baseline vs trained con preguntas de control |
-| **Web Crawler** | BFS por dominio con filtrado de ruido y extracción de texto significativo |
+| Característica             | Detalle                                                                           |
+| -------------------------- | --------------------------------------------------------------------------------- |
+| **Ingesta multi-fuente**   | Documentos manuales, PDF, YouTube transcripts, web crawling                       |
+| **Chunking inteligente**   | Fragmentos de 700 chars con overlap y separación por frases                       |
+| **Embeddings vectoriales** | `nomic-embed-text` vía Ollama para representación semántica                       |
+| **Recuperación híbrida**   | Cosine similarity (80 %) + keyword overlap (20 %)                                 |
+| **Grounding**              | Umbrales mínimos (`bestScore ≥ 0.33`, `overlap ≥ 0.12`) para evitar alucinaciones |
+| **Benchmark**              | Comparación objetiva baseline vs trained con preguntas de control                 |
+| **Web Crawler**            | BFS por dominio con filtrado de ruido y extracción de texto significativo         |
 
 ### 002 · IA Generativa
 
@@ -92,12 +92,12 @@ Sistema completo de RAG (Retrieval-Augmented Generation) que transforma document
 
 Motor de **generación de contenido condicionado** que utiliza el corpus entrenado para producir material útil:
 
-| Tipo de generación | Descripción |
-|--------------------|-------------|
-| 📝 **Resumen de curso** | Resumen académico estructurado del contenido formativo |
-| 💬 **Respuesta WhatsApp** | Mensaje breve y profesional para canal de mensajería |
-| 📱 **Post redes sociales** | Copy orientado a engagement para Instagram / LinkedIn |
-| 📧 **Campaña de email** | Email marketing con asunto, cuerpo y CTA |
+| Tipo de generación         | Descripción                                            |
+| -------------------------- | ------------------------------------------------------ |
+| 📝 **Resumen de curso**    | Resumen académico estructurado del contenido formativo |
+| 💬 **Respuesta WhatsApp**  | Mensaje breve y profesional para canal de mensajería   |
+| 📱 **Post redes sociales** | Copy orientado a engagement para Instagram / LinkedIn  |
+| 📧 **Campaña de email**    | Email marketing con asunto, cuerpo y CTA               |
 
 Cada tipo tiene su **prompt template especializado** que asegura tono, formato y uso exclusivo de datos del corpus.
 
@@ -107,12 +107,12 @@ Cada tipo tiene su **prompt template especializado** que asegura tono, formato y
 
 **Agente autónomo multicanal** que responde consultas adaptándose al canal y la política:
 
-| Canales | Políticas |
-|---------|-----------|
-| 🌐 Web Chat | ℹ️ Informativo — informar objetivamente |
-| 💬 WhatsApp | 💰 Comercial — persuadir y vender |
-| 📧 Email | 🔧 Soporte — resolver problemas técnicos |
-| 🏢 CRM | |
+| Canales     | Políticas                                |
+| ----------- | ---------------------------------------- |
+| 🌐 Web Chat | ℹ️ Informativo — informar objetivamente  |
+| 💬 WhatsApp | 💰 Comercial — persuadir y vender        |
+| 📧 Email    | 🔧 Soporte — resolver problemas técnicos |
+| 🏢 CRM      |                                          |
 
 Cada ejecución queda registrada en `agent_runs` con contexto, canal, política y respuesta completa para **auditoría y trazabilidad**.
 
@@ -153,34 +153,34 @@ python app.py                    # → http://localhost:5102
 
 ### Módulo 001 — Training Hub (`:5101`)
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| `GET` | `/api/health` | Estado de salud del servicio |
-| `GET` | `/api/stats` | Estadísticas (fuentes, chunks, runs) |
-| `GET` | `/api/sources` | Listar fuentes del corpus |
-| `POST` | `/api/sources/document` | Añadir documento manual |
-| `POST` | `/api/sources/youtube` | Importar transcripción de YouTube |
-| `POST` | `/api/sources/pdf` | Importar PDF corporativo |
-| `POST` | `/api/sources/website/start` | Iniciar crawling de web |
-| `DELETE` | `/api/sources/<id>` | Eliminar fuente |
-| `POST` | `/api/train/run` | Ejecutar entrenamiento semántico |
-| `POST` | `/api/ask` | Preguntar (baseline vs trained) |
-| `POST` | `/api/evaluate` | Ejecutar benchmark |
+| Método   | Endpoint                     | Descripción                          |
+| -------- | ---------------------------- | ------------------------------------ |
+| `GET`    | `/api/health`                | Estado de salud del servicio         |
+| `GET`    | `/api/stats`                 | Estadísticas (fuentes, chunks, runs) |
+| `GET`    | `/api/sources`               | Listar fuentes del corpus            |
+| `POST`   | `/api/sources/document`      | Añadir documento manual              |
+| `POST`   | `/api/sources/youtube`       | Importar transcripción de YouTube    |
+| `POST`   | `/api/sources/pdf`           | Importar PDF corporativo             |
+| `POST`   | `/api/sources/website/start` | Iniciar crawling de web              |
+| `DELETE` | `/api/sources/<id>`          | Eliminar fuente                      |
+| `POST`   | `/api/train/run`             | Ejecutar entrenamiento semántico     |
+| `POST`   | `/api/ask`                   | Preguntar (baseline vs trained)      |
+| `POST`   | `/api/evaluate`              | Ejecutar benchmark                   |
 
 ### Módulo 002 + 003 — Command Center (`:5102`)
 
 Incluye **todos los endpoints de 001** más:
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| `GET` | `/api/train/status` | Estado del entrenamiento |
-| `GET` | `/api/context/preview` | Previsualizar chunks de contexto |
-| `POST` | `/api/generate` | Generar contenido condicionado |
-| `GET` | `/api/generations` | Histórico de generaciones |
-| `GET` | `/api/agent/overview` | Resumen del agente (canales, políticas) |
-| `POST` | `/api/agent/run` | Ejecutar el agente |
-| `GET` | `/api/agent/runs` | Histórico de ejecuciones del agente |
-| `POST` | `/api/sources/website/jobs/<id>/cancel` | Cancelar crawling activo |
+| Método | Endpoint                                | Descripción                             |
+| ------ | --------------------------------------- | --------------------------------------- |
+| `GET`  | `/api/train/status`                     | Estado del entrenamiento                |
+| `GET`  | `/api/context/preview`                  | Previsualizar chunks de contexto        |
+| `POST` | `/api/generate`                         | Generar contenido condicionado          |
+| `GET`  | `/api/generations`                      | Histórico de generaciones               |
+| `GET`  | `/api/agent/overview`                   | Resumen del agente (canales, políticas) |
+| `POST` | `/api/agent/run`                        | Ejecutar el agente                      |
+| `GET`  | `/api/agent/runs`                       | Histórico de ejecuciones del agente     |
+| `POST` | `/api/sources/website/jobs/<id>/cancel` | Cancelar crawling activo                |
 
 ---
 
@@ -188,31 +188,31 @@ Incluye **todos los endpoints de 001** más:
 
 ### Tablas principales
 
-| Tabla | Módulo | Propósito |
-|-------|--------|-----------|
-| `knowledge_sources` | 001+ | Fuentes originales (document, pdf, youtube, website) |
-| `corpus_documents` | 001+ | Documentos normalizados tras entrenamiento |
-| `corpus_chunks` | 001+ | Fragmentos con embeddings vectoriales |
-| `training_runs` | 001+ | Histórico de ejecuciones de entrenamiento |
-| `benchmark_questions` | 001 | Preguntas de control con keywords esperadas |
-| `benchmark_results` | 001 | Resultados comparativos baseline vs trained |
-| `interaction_logs` | 001+ | Registro de preguntas/respuestas |
-| `generations` | 002 | Log de generaciones (task, topic, prompt, output) |
-| `agent_runs` | 003 | Log de ejecuciones del agente (canal, política, contexto) |
+| Tabla                 | Módulo | Propósito                                                 |
+| --------------------- | ------ | --------------------------------------------------------- |
+| `knowledge_sources`   | 001+   | Fuentes originales (document, pdf, youtube, website)      |
+| `corpus_documents`    | 001+   | Documentos normalizados tras entrenamiento                |
+| `corpus_chunks`       | 001+   | Fragmentos con embeddings vectoriales                     |
+| `training_runs`       | 001+   | Histórico de ejecuciones de entrenamiento                 |
+| `benchmark_questions` | 001    | Preguntas de control con keywords esperadas               |
+| `benchmark_results`   | 001    | Resultados comparativos baseline vs trained               |
+| `interaction_logs`    | 001+   | Registro de preguntas/respuestas                          |
+| `generations`         | 002    | Log de generaciones (task, topic, prompt, output)         |
+| `agent_runs`          | 003    | Log de ejecuciones del agente (canal, política, contexto) |
 
 ---
 
 ## 🔬 Stack Tecnológico
 
-| Capa | Tecnología |
-|------|-----------|
-| **Backend** | Python 3.11 · Flask 3.x |
-| **IA Local** | Ollama · qwen2.5-coder:7b · nomic-embed-text |
-| **Base de datos** | SQLite 3 (ficheros locales) |
-| **Web Crawling** | BeautifulSoup 4 · requests · threading |
-| **PDF** | pypdf |
-| **YouTube** | youtube-transcript-api |
-| **Frontend** | HTML5 · CSS3 · JavaScript vanilla |
+| Capa              | Tecnología                                   |
+| ----------------- | -------------------------------------------- |
+| **Backend**       | Python 3.11 · Flask 3.x                      |
+| **IA Local**      | Ollama · qwen2.5-coder:7b · nomic-embed-text |
+| **Base de datos** | SQLite 3 (ficheros locales)                  |
+| **Web Crawling**  | BeautifulSoup 4 · requests · threading       |
+| **PDF**           | pypdf                                        |
+| **YouTube**       | youtube-transcript-api                       |
+| **Frontend**      | HTML5 · CSS3 · JavaScript vanilla            |
 
 ---
 
@@ -220,19 +220,19 @@ Incluye **todos los endpoints de 001** más:
 
 Cada actividad incluye:
 
-| Documento | Descripción |
-|-----------|-------------|
+| Documento                  | Descripción                                           |
+| -------------------------- | ----------------------------------------------------- |
 | `Actividad_*_53945291X.md` | Memoria completa de la actividad (4 secciones × 25 %) |
-| `Rubrica_Evaluacion_*.md` | Rúbrica de evaluación con criterios y evidencias |
+| `Rubrica_Evaluacion_*.md`  | Rúbrica de evaluación con criterios y evidencias      |
 
 ### Estructura de evaluación
 
-| Sección | Peso | Qué se evalúa |
-|---------|------|----------------|
-| Introducción y contextualización | 25 % | Concepto + contexto de uso |
-| Desarrollo detallado | 25 % | Definiciones, código, proceso paso a paso |
-| Aplicación práctica | 25 % | Ejemplo funcional, errores comunes |
-| Conclusión | 25 % | Resumen + conexión con otras actividades |
+| Sección                          | Peso | Qué se evalúa                             |
+| -------------------------------- | ---- | ----------------------------------------- |
+| Introducción y contextualización | 25 % | Concepto + contexto de uso                |
+| Desarrollo detallado             | 25 % | Definiciones, código, proceso paso a paso |
+| Aplicación práctica              | 25 % | Ejemplo funcional, errores comunes        |
+| Conclusión                       | 25 % | Resumen + conexión con otras actividades  |
 
 ---
 
@@ -274,18 +274,18 @@ Cada actividad incluye:
 
 ## 👤 Autor
 
-| | |
-|---|---|
+|            |                             |
+| ---------- | --------------------------- |
 | **Alumno** | Luis Jahir Rodríguez Cedeño |
-| **DNI** | 53945291X |
-| **Ciclo** | DAM2 · 2025/26 |
-| **Módulo** | IA-301 |
-| **Centro** | IES de Teis |
+| **DNI**    | 53945291X                   |
+| **Ciclo**  | DAM2 · 2025/26              |
+| **Módulo** | IA-301                      |
+| **Centro** | IES de Teis                 |
 
 ---
 
 <div align="center">
 
-*Construido con ❤️ y modelos locales — sin APIs externas de pago.*
+_Construido con ❤️ y modelos locales — sin APIs externas de pago._
 
 </div>

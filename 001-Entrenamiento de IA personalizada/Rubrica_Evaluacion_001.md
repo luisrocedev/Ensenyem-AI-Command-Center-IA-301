@@ -8,12 +8,12 @@
 
 ## Criterios de calificación (10/10)
 
-| Bloque | Peso | Contenido exigido |
-|--------|------|-------------------|
-| 1. Introducción y contextualización | 25 % | Concepto general + contexto de uso |
-| 2. Desarrollo detallado y preciso | 25 % | Definiciones, terminología, proceso paso a paso, ejemplos de código |
-| 3. Aplicación práctica | 25 % | Ejemplo real ejecutable, errores comunes y prevención |
-| 4. Conclusión breve | 25 % | Resumen + enlace con otros contenidos de la unidad |
+| Bloque                              | Peso | Contenido exigido                                                   |
+| ----------------------------------- | ---- | ------------------------------------------------------------------- |
+| 1. Introducción y contextualización | 25 % | Concepto general + contexto de uso                                  |
+| 2. Desarrollo detallado y preciso   | 25 % | Definiciones, terminología, proceso paso a paso, ejemplos de código |
+| 3. Aplicación práctica              | 25 % | Ejemplo real ejecutable, errores comunes y prevención               |
+| 4. Conclusión breve                 | 25 % | Resumen + enlace con otros contenidos de la unidad                  |
 
 ---
 
@@ -26,12 +26,12 @@
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Concepto general explicado con claridad | ✅ | Sección 1 de la memoria: flujo ingesta → indexación → consulta → comparación |
-| Contexto de uso identificado | ✅ | *"responder dudas reales de empresa con información propia"* |
-| Mención del enfoque técnico elegido | ✅ | RAG local con Ollama + embeddings + SQLite |
-| Vocabulario profesional | ✅ | Corpus, chunking, embeddings, grounding |
+| Criterio                                | Cumple | Dónde se demuestra                                                           |
+| --------------------------------------- | ------ | ---------------------------------------------------------------------------- |
+| Concepto general explicado con claridad | ✅     | Sección 1 de la memoria: flujo ingesta → indexación → consulta → comparación |
+| Contexto de uso identificado            | ✅     | _"responder dudas reales de empresa con información propia"_                 |
+| Mención del enfoque técnico elegido     | ✅     | RAG local con Ollama + embeddings + SQLite                                   |
+| Vocabulario profesional                 | ✅     | Corpus, chunking, embeddings, grounding                                      |
 
 ### Puntos clave que debe contener la respuesta
 
@@ -53,13 +53,13 @@
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Definiciones (corpus, chunking, embeddings, grounding) | ✅ | Sección 2 de la memoria |
-| Funcionamiento paso a paso (5 pasos) | ✅ | Carga fuentes → normaliza SQLite → entrena chunks/embeddings → recupera contexto → genera respuesta |
-| Código real de `train_semantic_index()` | ✅ | Snippet completo con DELETE + INSERT chunks + embedding |
-| Código real de `answer_question()` | ✅ | Snippet con retrieve_context + ollama_chat |
-| Código compila y funciona | ✅ | `app.py` en puerto 5101 ejecutable |
+| Criterio                                               | Cumple | Dónde se demuestra                                                                                  |
+| ------------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------- |
+| Definiciones (corpus, chunking, embeddings, grounding) | ✅     | Sección 2 de la memoria                                                                             |
+| Funcionamiento paso a paso (5 pasos)                   | ✅     | Carga fuentes → normaliza SQLite → entrena chunks/embeddings → recupera contexto → genera respuesta |
+| Código real de `train_semantic_index()`                | ✅     | Snippet completo con DELETE + INSERT chunks + embedding                                             |
+| Código real de `answer_question()`                     | ✅     | Snippet con retrieve_context + ollama_chat                                                          |
+| Código compila y funciona                              | ✅     | `app.py` en puerto 5101 ejecutable                                                                  |
 
 ### Snippets clave que debe contener
 
@@ -98,15 +98,15 @@ def cosine_similarity(v1, v2):
 
 ### Tablas SQLite relevantes
 
-| Tabla | Propósito |
-|-------|-----------|
-| `knowledge_sources` | Fuentes originales (document, pdf, youtube, website) |
-| `corpus_documents` | Documentos normalizados tras entrenamiento |
-| `corpus_chunks` | Fragmentos con embeddings vectoriales |
-| `training_runs` | Log de ejecuciones de entrenamiento |
-| `benchmark_questions` | Preguntas de control con keywords esperadas |
-| `benchmark_results` | Resultados baseline vs trained por run |
-| `interaction_logs` | Histórico de preguntas/respuestas del usuario |
+| Tabla                 | Propósito                                            |
+| --------------------- | ---------------------------------------------------- |
+| `knowledge_sources`   | Fuentes originales (document, pdf, youtube, website) |
+| `corpus_documents`    | Documentos normalizados tras entrenamiento           |
+| `corpus_chunks`       | Fragmentos con embeddings vectoriales                |
+| `training_runs`       | Log de ejecuciones de entrenamiento                  |
+| `benchmark_questions` | Preguntas de control con keywords esperadas          |
+| `benchmark_results`   | Resultados baseline vs trained por run               |
+| `interaction_logs`    | Histórico de preguntas/respuestas del usuario        |
 
 ---
 
@@ -120,29 +120,29 @@ def cosine_similarity(v1, v2):
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Instrucciones de ejecución | ✅ | `cd ollama_academic_trainer && pip install && python app.py` |
-| Flujo de uso en interfaz | ✅ | Importar fuentes → entrenar → probar preguntas |
-| Errores comunes documentados | ✅ | 3 errores con prevención explícita |
-| Código comprobado y funcional | ✅ | Puerto 5101 operativo |
+| Criterio                      | Cumple | Dónde se demuestra                                           |
+| ----------------------------- | ------ | ------------------------------------------------------------ |
+| Instrucciones de ejecución    | ✅     | `cd ollama_academic_trainer && pip install && python app.py` |
+| Flujo de uso en interfaz      | ✅     | Importar fuentes → entrenar → probar preguntas               |
+| Errores comunes documentados  | ✅     | 3 errores con prevención explícita                           |
+| Código comprobado y funcional | ✅     | Puerto 5101 operativo                                        |
 
 ### Errores comunes y prevención
 
-| Error | Prevención |
-|-------|------------|
-| Entrenar sin fuentes cargadas | Validar que `knowledge_sources` tenga contenido antes de llamar a `/api/train/run` |
-| Embeddings fallan por modelo ausente | Ejecutar `ollama pull nomic-embed-text` antes de entrenar |
-| Respuestas genéricas sin evidencia del corpus | Usar grounding: si `bestScore < 0.33` y `overlap < 0.12`, devolver *"No está en mi corpus"* |
+| Error                                         | Prevención                                                                                  |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Entrenar sin fuentes cargadas                 | Validar que `knowledge_sources` tenga contenido antes de llamar a `/api/train/run`          |
+| Embeddings fallan por modelo ausente          | Ejecutar `ollama pull nomic-embed-text` antes de entrenar                                   |
+| Respuestas genéricas sin evidencia del corpus | Usar grounding: si `bestScore < 0.33` y `overlap < 0.12`, devolver _"No está en mi corpus"_ |
 
 ### Tipos de ingesta soportados
 
-| Tipo | Endpoint | Técnica |
-|------|----------|---------|
-| Documento manual | `POST /api/sources/document` | Texto pegado directamente |
-| PDF corporativo | `POST /api/sources/pdf` | `pypdf.PdfReader` extrae texto |
-| YouTube | `POST /api/sources/youtube` | `youtube_transcript_api` extrae transcripción |
-| Web completa | `POST /api/sources/website/start` | Crawler BFS por dominio con `BeautifulSoup` |
+| Tipo             | Endpoint                          | Técnica                                       |
+| ---------------- | --------------------------------- | --------------------------------------------- |
+| Documento manual | `POST /api/sources/document`      | Texto pegado directamente                     |
+| PDF corporativo  | `POST /api/sources/pdf`           | `pypdf.PdfReader` extrae texto                |
+| YouTube          | `POST /api/sources/youtube`       | `youtube_transcript_api` extrae transcripción |
+| Web completa     | `POST /api/sources/website/start` | Crawler BFS por dominio con `BeautifulSoup`   |
 
 ---
 
@@ -155,11 +155,11 @@ def cosine_similarity(v1, v2):
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Resumen de puntos clave | ✅ | *"base técnica sólida: ingesta, entrenamiento semántico, recuperación contextual y validación objetiva"* |
-| Conexión con 002 y 003 | ✅ | *"enlaza directamente con la 002 (IA Generativa), donde el mismo corpus se usa para crear contenido"* |
-| Visión de continuidad del ciclo | ✅ | 001 → 002 → 003 como evolución técnica única |
+| Criterio                        | Cumple | Dónde se demuestra                                                                                       |
+| ------------------------------- | ------ | -------------------------------------------------------------------------------------------------------- |
+| Resumen de puntos clave         | ✅     | _"base técnica sólida: ingesta, entrenamiento semántico, recuperación contextual y validación objetiva"_ |
+| Conexión con 002 y 003          | ✅     | _"enlaza directamente con la 002 (IA Generativa), donde el mismo corpus se usa para crear contenido"_    |
+| Visión de continuidad del ciclo | ✅     | 001 → 002 → 003 como evolución técnica única                                                             |
 
 ### Puntos de resumen esperados
 
@@ -172,23 +172,23 @@ def cosine_similarity(v1, v2):
 
 ## Criterios transversales de calidad
 
-| Criterio | Estado |
-|----------|--------|
-| Ortografía y gramática correctas | ✅ |
-| Organización en secciones/viñetas | ✅ |
-| Lenguaje técnico propio del alumno | ✅ |
-| Todo el código es válido y funciona | ✅ |
-| No hay plagio | ✅ |
+| Criterio                            | Estado |
+| ----------------------------------- | ------ |
+| Ortografía y gramática correctas    | ✅     |
+| Organización en secciones/viñetas   | ✅     |
+| Lenguaje técnico propio del alumno  | ✅     |
+| Todo el código es válido y funciona | ✅     |
+| No hay plagio                       | ✅     |
 
 ---
 
 ## Archivos de evidencia
 
-| Archivo | Propósito |
-|---------|-----------|
-| `ollama_academic_trainer/app.py` | Backend completo (Flask + SQLite + Ollama) |
-| `ollama_academic_trainer/templates/index.html` | Interfaz web |
-| `ollama_academic_trainer/static/app.js` | Lógica frontend |
-| `ollama_academic_trainer/static/styles.css` | Estilos visuales |
-| `ollama_academic_trainer/benchmark.json` | Preguntas de control con keywords |
-| `Actividad_EntrenamientoIA_53945291X.md` | Memoria de la actividad |
+| Archivo                                        | Propósito                                  |
+| ---------------------------------------------- | ------------------------------------------ |
+| `ollama_academic_trainer/app.py`               | Backend completo (Flask + SQLite + Ollama) |
+| `ollama_academic_trainer/templates/index.html` | Interfaz web                               |
+| `ollama_academic_trainer/static/app.js`        | Lógica frontend                            |
+| `ollama_academic_trainer/static/styles.css`    | Estilos visuales                           |
+| `ollama_academic_trainer/benchmark.json`       | Preguntas de control con keywords          |
+| `Actividad_EntrenamientoIA_53945291X.md`       | Memoria de la actividad                    |

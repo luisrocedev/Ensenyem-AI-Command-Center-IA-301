@@ -8,12 +8,12 @@
 
 ## Criterios de calificación (10/10)
 
-| Bloque | Peso | Contenido exigido |
-|--------|------|-------------------|
-| 1. Introducción y contextualización | 25 % | Concepto general + contexto de uso |
-| 2. Desarrollo detallado y preciso | 25 % | Definiciones, terminología, proceso paso a paso, ejemplos de código |
-| 3. Aplicación práctica | 25 % | Ejemplo real ejecutable, errores comunes y prevención |
-| 4. Conclusión breve | 25 % | Resumen + enlace con otros contenidos de la unidad |
+| Bloque                              | Peso | Contenido exigido                                                   |
+| ----------------------------------- | ---- | ------------------------------------------------------------------- |
+| 1. Introducción y contextualización | 25 % | Concepto general + contexto de uso                                  |
+| 2. Desarrollo detallado y preciso   | 25 % | Definiciones, terminología, proceso paso a paso, ejemplos de código |
+| 3. Aplicación práctica              | 25 % | Ejemplo real ejecutable, errores comunes y prevención               |
+| 4. Conclusión breve                 | 25 % | Resumen + enlace con otros contenidos de la unidad                  |
 
 ---
 
@@ -26,12 +26,12 @@
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Concepto general explicado con claridad | ✅ | Sección 1: agente que interpreta consultas, recupera contexto y genera respuesta adaptada al canal |
-| Contexto de uso identificado | ✅ | *"agente conversacional multicanal con políticas configurables"* |
-| Diferenciación respecto a 001 y 002 | ✅ | 001 = entrenamiento; 002 = generación de contenido; 003 = **agente autónomo con canales y políticas** |
-| Vocabulario profesional | ✅ | Agente, canal, política, trazabilidad, workflow |
+| Criterio                                | Cumple | Dónde se demuestra                                                                                    |
+| --------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| Concepto general explicado con claridad | ✅     | Sección 1: agente que interpreta consultas, recupera contexto y genera respuesta adaptada al canal    |
+| Contexto de uso identificado            | ✅     | _"agente conversacional multicanal con políticas configurables"_                                      |
+| Diferenciación respecto a 001 y 002     | ✅     | 001 = entrenamiento; 002 = generación de contenido; 003 = **agente autónomo con canales y políticas** |
+| Vocabulario profesional                 | ✅     | Agente, canal, política, trazabilidad, workflow                                                       |
 
 ### Puntos clave que debe contener la respuesta
 
@@ -54,13 +54,13 @@
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Definiciones (agente, canal, política, trazabilidad) | ✅ | Sección 2 de la memoria |
-| Funcionamiento paso a paso (4 pasos) | ✅ | Recibir consulta → seleccionar canal/política → recuperar contexto → generar respuesta adaptada |
-| Código real de `run_agent()` | ✅ | Snippet completo con build_agent_prompt + ollama_chat + log |
-| Código real de `build_agent_prompt()` | ✅ | Snippet con inyección de canal, política y contexto |
-| Código compila y funciona | ✅ | Integrado en `app.py` puerto 5102 |
+| Criterio                                             | Cumple | Dónde se demuestra                                                                              |
+| ---------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| Definiciones (agente, canal, política, trazabilidad) | ✅     | Sección 2 de la memoria                                                                         |
+| Funcionamiento paso a paso (4 pasos)                 | ✅     | Recibir consulta → seleccionar canal/política → recuperar contexto → generar respuesta adaptada |
+| Código real de `run_agent()`                         | ✅     | Snippet completo con build_agent_prompt + ollama_chat + log                                     |
+| Código real de `build_agent_prompt()`                | ✅     | Snippet con inyección de canal, política y contexto                                             |
+| Código compila y funciona                            | ✅     | Integrado en `app.py` puerto 5102                                                               |
 
 ### Snippets clave que debe contener
 
@@ -118,15 +118,15 @@ def run_agent(channel, policy, question):
 
 ### Tabla `agent_runs`
 
-| Columna | Tipo | Propósito |
-|---------|------|-----------|
-| `id` | INTEGER PK | Identificador único |
-| `channel` | TEXT | Canal seleccionado (webchat/whatsapp/email/crm) |
-| `policy` | TEXT | Política aplicada (informativo/comercial/soporte) |
-| `question` | TEXT | Pregunta del usuario |
-| `answer` | TEXT | Respuesta generada por el agente |
-| `context_used` | TEXT (JSON) | Chunks de contexto utilizados |
-| `created_at` | TEXT | Timestamp de ejecución |
+| Columna        | Tipo        | Propósito                                         |
+| -------------- | ----------- | ------------------------------------------------- |
+| `id`           | INTEGER PK  | Identificador único                               |
+| `channel`      | TEXT        | Canal seleccionado (webchat/whatsapp/email/crm)   |
+| `policy`       | TEXT        | Política aplicada (informativo/comercial/soporte) |
+| `question`     | TEXT        | Pregunta del usuario                              |
+| `answer`       | TEXT        | Respuesta generada por el agente                  |
+| `context_used` | TEXT (JSON) | Chunks de contexto utilizados                     |
+| `created_at`   | TEXT        | Timestamp de ejecución                            |
 
 ---
 
@@ -140,28 +140,28 @@ def run_agent(channel, policy, question):
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Instrucciones de ejecución | ✅ | Mismo `app.py` que 002 — pestaña "Agente" en la UI |
-| Flujo de uso del agente | ✅ | Seleccionar canal → política → escribir pregunta → ejecutar |
-| Errores comunes documentados | ✅ | 3 errores con prevención |
-| Trazabilidad verificable | ✅ | `GET /api/agent/runs` devuelve histórico completo |
+| Criterio                     | Cumple | Dónde se demuestra                                          |
+| ---------------------------- | ------ | ----------------------------------------------------------- |
+| Instrucciones de ejecución   | ✅     | Mismo `app.py` que 002 — pestaña "Agente" en la UI          |
+| Flujo de uso del agente      | ✅     | Seleccionar canal → política → escribir pregunta → ejecutar |
+| Errores comunes documentados | ✅     | 3 errores con prevención                                    |
+| Trazabilidad verificable     | ✅     | `GET /api/agent/runs` devuelve histórico completo           |
 
 ### Errores comunes y prevención
 
-| Error | Prevención |
-|-------|------------|
-| Ejecutar agente sin corpus entrenado | Validar con `/api/train/status` antes; la UI muestra badge de estado |
+| Error                                                        | Prevención                                                                             |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Ejecutar agente sin corpus entrenado                         | Validar con `/api/train/status` antes; la UI muestra badge de estado                   |
 | Respuesta inadecuada para el canal (tono formal en WhatsApp) | El prompt inyecta `"Tu tono es: {tone}"` automáticamente, adaptando el estilo al canal |
-| No poder auditar una respuesta | Cada run se guarda en `agent_runs` con `context_used` (JSON de los chunks utilizados) |
+| No poder auditar una respuesta                               | Cada run se guarda en `agent_runs` con `context_used` (JSON de los chunks utilizados)  |
 
 ### Endpoints del Agente
 
-| Método | Ruta | Función |
-|--------|------|---------|
-| `GET` | `/api/agent/overview` | Resumen: canales disponibles, políticas, estado del corpus |
-| `POST` | `/api/agent/run` | Ejecutar el agente con `{channel, policy, question}` |
-| `GET` | `/api/agent/runs` | Listar todas las ejecuciones del agente |
+| Método | Ruta                  | Función                                                    |
+| ------ | --------------------- | ---------------------------------------------------------- |
+| `GET`  | `/api/agent/overview` | Resumen: canales disponibles, políticas, estado del corpus |
+| `POST` | `/api/agent/run`      | Ejecutar el agente con `{channel, policy, question}`       |
+| `GET`  | `/api/agent/runs`     | Listar todas las ejecuciones del agente                    |
 
 ### Ejemplo de llamada
 
@@ -176,6 +176,7 @@ curl -X POST http://localhost:5102/api/agent/run \
 ```
 
 Respuesta esperada:
+
 ```json
 {
   "ok": true,
@@ -197,12 +198,12 @@ Respuesta esperada:
 
 ### Evidencia en la memoria
 
-| Criterio | Cumple | Dónde se demuestra |
-|----------|--------|--------------------|
-| Resumen de puntos clave | ✅ | *"agente multicanal con políticas, trazabilidad completa y workflow automático"* |
-| Conexión con 001 | ✅ | *"usa el corpus entrenado en la actividad 001"* |
-| Conexión con 002 | ✅ | *"reutiliza el motor de generación de la actividad 002"* |
-| Visión end-to-end | ✅ | Ciclo completo: ingesta → entrenamiento → generación → agente autónomo |
+| Criterio                | Cumple | Dónde se demuestra                                                               |
+| ----------------------- | ------ | -------------------------------------------------------------------------------- |
+| Resumen de puntos clave | ✅     | _"agente multicanal con políticas, trazabilidad completa y workflow automático"_ |
+| Conexión con 001        | ✅     | _"usa el corpus entrenado en la actividad 001"_                                  |
+| Conexión con 002        | ✅     | _"reutiliza el motor de generación de la actividad 002"_                         |
+| Visión end-to-end       | ✅     | Ciclo completo: ingesta → entrenamiento → generación → agente autónomo           |
 
 ### Puntos de resumen esperados
 
@@ -215,21 +216,21 @@ Respuesta esperada:
 
 ## Criterios transversales de calidad
 
-| Criterio | Estado |
-|----------|--------|
-| Ortografía y gramática correctas | ✅ |
-| Organización en secciones/viñetas | ✅ |
-| Lenguaje técnico propio del alumno | ✅ |
-| Todo el código es válido y funciona | ✅ |
-| No hay plagio | ✅ |
+| Criterio                            | Estado |
+| ----------------------------------- | ------ |
+| Ortografía y gramática correctas    | ✅     |
+| Organización en secciones/viñetas   | ✅     |
+| Lenguaje técnico propio del alumno  | ✅     |
+| Todo el código es válido y funciona | ✅     |
+| No hay plagio                       | ✅     |
 
 ---
 
 ## Archivos de evidencia
 
-| Archivo | Propósito |
-|---------|-----------|
-| `../002-IA Generativa/ensenyem_generative_studio/app.py` | Backend unificado (incluye agente) |
-| `../002-IA Generativa/ensenyem_generative_studio/templates/index.html` | Interfaz con pestaña Agente |
-| `../002-IA Generativa/ensenyem_generative_studio/static/app.js` | Lógica frontend del agente |
-| `Actividad_AgenteIA_53945291X.md` | Memoria de la actividad |
+| Archivo                                                                | Propósito                          |
+| ---------------------------------------------------------------------- | ---------------------------------- |
+| `../002-IA Generativa/ensenyem_generative_studio/app.py`               | Backend unificado (incluye agente) |
+| `../002-IA Generativa/ensenyem_generative_studio/templates/index.html` | Interfaz con pestaña Agente        |
+| `../002-IA Generativa/ensenyem_generative_studio/static/app.js`        | Lógica frontend del agente         |
+| `Actividad_AgenteIA_53945291X.md`                                      | Memoria de la actividad            |
